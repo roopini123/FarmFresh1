@@ -5,14 +5,19 @@ from .models import Category, Tag, Post
 
 
 def blog_page(request):
-    post = Post.objects.filter(is_draft=False)
+
+    posts = Post.objects.filter(is_draft=False)
+
+    if 'q' in request.GET and request.GET['q']:
+        posts = posts.filter(title__icontains=request.GET['q'])
+    print(request.GET)
     category = Category.objects.all().annotate(
         number_of_posts=Count('post')
     ).order_by('-number_of_posts', 'name')
     tag = Tag.objects.all()
     recent_post = Post.objects.filter(is_draft=False).order_by('-date')[:3]
     context = {
-        'posts': post,
+        'posts': posts,
         'categories': category,
         'tags': tag,
         'recent_posts': recent_post

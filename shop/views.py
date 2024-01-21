@@ -4,7 +4,10 @@ from .models import Category, Product
 
 def shop_page(request):
     category = Category.objects.all()
-    products = Product.objects.filter(is_draft=False)
+    products = Product.objects.filter(is_draft=False,is_stock_avaialable=True)
+
+    if "cid" in request.GET and request.GET['cid']:
+        products= products.filter(category_id=int(request.GET['cid']))
     context = {
         'category': category,
         'products': products
@@ -25,3 +28,4 @@ def product_details(request, product_id):
 
 def wishlist(request):
     return render(request, 'shop/wishlist.html')
+

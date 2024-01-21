@@ -47,8 +47,9 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'author',
-
-    'account',
+    'UserProfile',
+    'crispy_forms',
+    'crispy_bootstrap5'
 
     # 'signup'
 ]
@@ -64,7 +65,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'django_ecommerce.urls'
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -152,3 +153,19 @@ CKEDITOR_CONFIGS = {
         'toolbar': None,
     },
 }
+
+AUTH_USER_MODEL = 'UserProfile.User'
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "rajapolipilli@gmail.com"
+EMAIL_HOST_PASSWORD = "qdlwyvrazsyflzrv"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

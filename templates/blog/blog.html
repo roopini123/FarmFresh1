@@ -27,9 +27,8 @@
     		              </a>
     		              <div class="text d-block pl-md-4">
     		              	<div class="meta mb-3">
-    		                  <div><a href="#">{{ post.date }}</a></div>
-    		                  <div><a href="#">{{ post.author }}</a></div>
-    		                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+    		                  <div><a >{{ post.date }}</a></div>
+    		                  <div><a ><span class="icon-person"></span> {{ post.author }}</a></div>
     		                </div>
     		                <h3 class="heading"><a href="{% url 'post-details' post.id %}">{{ post.title }}</a></h3>
     		                <p>{{ post.content|safe|truncatewords:20 }}</p>
@@ -39,7 +38,7 @@
     		          </div>
                 {% endfor %}
               {% else %}
-                <h2>There are no Posts in the Database</h2>
+                <h2>There are no Posts</h2>
               {% endif %}
               <!-- /posts -->
 						</div>
